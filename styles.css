@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414; /* Dark background color */
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.nav-link {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease-in-out;
+}
+
+#about-link { color: #00aaff; } /* Blue */
+#skills-link { color: #00ffaa; } /* Green */
+#publications-link { color: #ffaa00; } /* Yellow */
+#resume-link { color: #ff55aa; } /* Pink */
+#github-link { color: #aa55ff; } /* Purple */
+
+.nav-link:hover {
+    opacity: 0.8;
+}
+
+.nav-link::before {
+    content: "|";
+    color: inherit;
+    margin-right: 10px;
+}
+
