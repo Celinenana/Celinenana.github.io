@@ -3,6 +3,7 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
+    flex-direction: column; /* Change from row to column */
     justify-content: center;
     align-items: center;
     background-color: #0d0d0d; /* Dark background */
@@ -16,6 +17,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 40px;
+    margin-top: 20px; /* Add space between the text and the navigation links */
 }
 
 .nav-link {
@@ -50,4 +52,19 @@ body {
 
 .animated-link:hover::after {
     width: 100%;
+}
+
+.content {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 40px; /* Increase this value to adjust the vertical gap */
+}
+
+.content .name {
+    font-size: 2rem; /* Larger font size */
+    font-weight: bold;
+}
+
+.content .details {
+    font-size: 1.5rem;
 }
