@@ -4,11 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - Celine Zhou</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #120078, #9d0191, #fd3a69, #fcee0c);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Container and header styling */
+        .container {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            color: #fff;
+            position: relative;
+        }
+
+        .glitch {
+            animation: glitch 1.5s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow: 0 0 5px #fff, 5px 5px 15px rgba(255, 0, 255, 0.75), -5px -5px 15px rgba(0, 255, 255, 0.75);
+            }
+            50% {
+                text-shadow: 0 0 10px #fff, 10px 10px 25px rgba(255, 0, 255, 0.75), -10px -10px 25px rgba(0, 255, 255, 0.75);
+            }
+        }
+
+        /* Dynamic robot shapes */
+        .robot-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0); }
+        }
+
+        .robot-shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .robot-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            right: 5%;
+            animation-delay: 1.5s;
+        }
+
+        .robot-shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        /* Product List Styling */
+        .product-list {
+            margin: 2rem 0;
+        }
+
+        .product-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-item h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-item p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: #fd3a69;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #9d0191;
+        }
+
+        footer .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            text-decoration: none;
+            color: #fcee0c;
+            font-size: 1.25rem;
+            transition: color 0.3s ease;
+        }
+
+        footer .back-button:hover {
+            color: #fd3a69;
+        }
+    </style>
 </head>
 <body>
-    <h1>Products</h1>
-    <p>This is the Products page. Here you can showcase the products you've worked on.</p>
-    <a href="index.html">Back to Home</a>
+    <div class="robot-shape"></div>
+    <div class="robot-shape"></div>
+    <div class="robot-shape"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="glitch">Products</h1>
+        </header>
+        
+        <section class="product-list">
+            <div class="product-item">
+                <h2>CollegeBot AI</h2>
+                <p>An AI-powered campus Q&A engine helping students navigate campus and job-related information efficiently.</p>
+                <a href="https://collegebot.ai" target="_blank" class="cta-button">Check it Out</a>
+            </div>
+        </section>
+
+        <footer>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </footer>
+    </div>
 </body>
 </html>
