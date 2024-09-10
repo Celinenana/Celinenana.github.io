@@ -1,70 +1,162 @@
+/* Global Styles */
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column; /* Change from row to column */
-    justify-content: center;
-    align-items: center;
-    background-color: #0d0d0d; /* Dark background */
-    font-family: 'Courier New', Courier, monospace;
-    color: #ffffff;
-}
-
-.main-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px; /* Add space between the text and the navigation links */
-}
-
-.nav-link {
-    font-size: 2rem;
-    font-weight: bold;
-    text-decoration: none;
-    display: inline-block;
-    background: linear-gradient(90deg, #00aaff, #aa55ff);
-    -webkit-background-clip: text;
-    background-clip: text; /* Standard property for compatibility */
-    color: transparent;
-    transition: background-size 0.3s ease-in-out, transform 0.3s ease-in-out;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(90deg, #0f0c29, #302b63, #24243e, #4e4376);
+    background-size: 200% 200%;
+    animation: boldGradientAnimation 8s ease infinite;
+    color: #fff;
+    overflow: hidden;
     position: relative;
 }
 
-.nav-link:hover {
-    background-size: 200%;
-    transform: scale(1.1);
-    opacity: 0.8;
+/* Bolder Gradient Background Animation */
+@keyframes boldGradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.animated-link::after {
+/* Moving Code Elements */
+.code-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.code {
+    position: absolute;
+    top: -100%;
+    font-size: 18px;
+    color: rgba(0, 255, 0, 0.7);
+    animation: rain 7s linear infinite;
+    opacity: 0.85;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: nowrap;
+}
+
+/* Random positioning for the code rain across the screen */
+.code:nth-child(1) { left: 5%; }
+.code:nth-child(2) { left: 15%; }
+.code:nth-child(3) { left: 25%; }
+.code:nth-child(4) { left: 35%; }
+.code:nth-child(5) { left: 45%; }
+.code:nth-child(6) { left: 55%; }
+.code:nth-child(7) { left: 65%; }
+.code:nth-child(8) { left: 75%; }
+.code:nth-child(9) { left: 85%; }
+.code:nth-child(10) { left: 95%; }
+
+/* Vary animation speed for more dynamism */
+@keyframes rain {
+    0% { top: -100%; opacity: 0; }
+    10% { opacity: 1; }
+    100% { top: 110%; opacity: 0; }
+}
+
+/* Increase density and variety of speed */
+.code:nth-child(2n) { animation-duration: 6s; }
+.code:nth-child(3n) { animation-duration: 5s; }
+.code:nth-child(4n) { animation-duration: 8s; }
+.code:nth-child(5n) { animation-duration: 4.5s; }
+.code:nth-child(6n) { animation-duration: 6.5s; }
+
+/* Neon text */
+.content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 50px 20px 20px;
+}
+
+.name {
+    font-size: 48px;
+    color: #08f;
+    text-shadow: 0 0 10px #08f, 0 0 20px #08f;
+    animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+.details {
+    font-size: 20px;
+    color: #f0f;
+    text-shadow: 0 0 8px #f0f, 0 0 15px #f0f;
+    animation: neonGlowAlt 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+    from { text-shadow: 0 0 5px #08f; }
+    to { text-shadow: 0 0 20px #08f, 0 0 30px #08f; }
+}
+
+@keyframes neonGlowAlt {
+    from { text-shadow: 0 0 5px #f0f; }
+    to { text-shadow: 0 0 20px #f0f, 0 0 30px #f0f; }
+}
+
+/* Navigation Links */
+.main-container {
+    position: relative;
+    z-index: 3;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    font-size: 24px;
+    padding: 15px 25px;
+    color: #0ff;
+    text-decoration: none;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #0ff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: color 0.4s ease;
+}
+
+.nav-link::before {
     content: '';
     position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #00aaff, #aa55ff);
-    transition: width 0.3s ease-in-out;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(0, 255, 255, 0.1);
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-.animated-link:hover::after {
-    width: 100%;
+.nav-link:hover {
+    color: #fff;
 }
 
-.content {
-    text-align: center;
-    color: #ffffff;
-    margin-bottom: 40px; /* Increase this value to adjust the vertical gap */
+.nav-link:hover::before {
+    opacity: 1;
+    animation: shine 1s forwards;
 }
 
-.content .name {
-    font-size: 2rem; /* Larger font size */
-    font-weight: bold;
+@keyframes shine {
+    from { transform: rotate(45deg) translate(-100%, -100%); }
+    to { transform: rotate(45deg) translate(100%, 100%); }
 }
 
-.content .details {
-    font-size: 1.5rem;
+/* Responsive Design */
+@media (max-width: 600px) {
+    .name {
+        font-size: 36px;
+    }
+    .nav-link {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
 }
