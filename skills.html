@@ -3,12 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills - Celine Zhou</title>
+    <title>Interactive Pet - Celine Zhou</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 页面样式 */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa;
+        }
+
+        .pet-computer {
+            width: 300px;
+            height: 400px;
+            background-color: #2e3b4e;
+            border-radius: 20px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            position: relative;
+        }
+
+        .screen {
+            width: 100%;
+            height: 250px;
+            background-color: #000;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        .keyboard {
+            display: flex;
+            justify-content: center;
+            width: 90%;
+            margin-top: 10px;
+        }
+
+        .button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #1b5e20;
+        }
+
+        .pet-face {
+            position: absolute;
+            top: -40px;
+            width: 60px;
+            height: 60px;
+            background-color: #ffeb3b;
+            border-radius: 50%;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .eyes {
+            display: flex;
+            justify-content: space-between;
+            width: 30px;
+            margin-bottom: 5px; /* 将眼睛放到嘴巴上方 */
+        }
+
+        .eye {
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .mouth {
+            width: 40px;
+            height: 20px;
+            border-bottom: 4px solid black;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .input-box {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-box:focus {
+            outline: none;
+        }
+
+        .send-button {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .send-button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
 </head>
 <body>
-    <h1>Skills</h1>
-    <p>This is the Skills page. Here you can add a list of your skills.</p>
-    <a href="index.html">Back to Home</a>
+
+    <!-- 小电脑电子宠物 -->
+    <div class="pet-computer">
+        <div class="pet-face" id="petFace">
+            <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="mouth" id="petMouth"></div>
+        </div>
+
+        <div class="screen" id="chatScreen">
+            Hello! I'm your pet computer. Do you want to feed me, play with me, or chat with me?
+        </div>
+
+        <div class="keyboard">
+            <button class="button" id="feedButton">Feed</button>
+            <button class="button" id="playButton">Play</button>
+        </div>
+
+        <div class="keyboard">
+            <input type="text" id="userInput" class="input-box" placeholder="Type a message...">
+            <button class="send-button" id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatScreen = document.getElementById('chatScreen');
+        const petMouth = document.getElementById('petMouth');
+        const feedButton = document.getElementById('feedButton');
+        const playButton = document.getElementById('playButton');
+        const sendButton = document.getElementById('sendButton');
+        const userInput = document.getElementById('userInput');
+
+        // 喂食按钮点击事件
+        feedButton.addEventListener('click', () => {
+            chatScreen.textContent = "Yum! Thank you for the food! 😋";
+            petMouth.className = 'mouth happy-mouth'; // 开心的嘴巴
+        });
+
+        // 玩耍按钮点击事件
+        playButton.addEventListener('click', () => {
+            chatScreen.textContent = "Yay! I love playing with you! 😄";
+            petMouth.className = 'mouth happy-mouth'; // 开心的嘴巴
+        });
+
+        // 发送按钮点击事件
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value;
+            if (userMessage === '01' || userMessage === '11'|| userMessage === '10'|| userMessage === '00') {
+                chatScreen.textContent = "I understand you, my friend! 🖥️";
+                petMouth.className = 'mouth happy-mouth'; // 开心的嘴巴
+            } else {
+                chatScreen.textContent = "Sorry, I don't understand human language... 😕";
+                petMouth.className = 'mouth sad-mouth'; // 伤心的嘴巴
+            }
+            userInput.value = ''; // 清空输入框
+        });
+
+        // 设置嘴巴变化样式
+        function setMouth(happy) {
+            if (happy) {
+                petMouth.className = 'mouth happy-mouth';
+            } else {
+                petMouth.className = 'mouth sad-mouth';
+            }
+        }
+    </script>
+
 </body>
 </html>
