@@ -3,202 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Pet - Celine Zhou</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Skills</title>
     <style>
-        /* 页面样式 */
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #e0f7fa;
+            padding: 0;
+            background-color: #f9f9f9; /* Light background */
+            color: #333;
+            line-height: 1.6;
         }
-
-        .pet-computer {
-            width: 300px;
-            height: 400px;
-            background-color: #2e3b4e;
-            border-radius: 20px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            position: relative;
-        }
-
-        .screen {
-            width: 100%;
-            height: 250px;
-            background-color: #000;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 10px;
-            box-sizing: border-box;
+        header {
             text-align: center;
-            flex-direction: column;
+            padding: 20px 0;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-        .keyboard {
-            display: flex;
-            justify-content: center;
-            width: 90%;
-            margin-top: 10px;
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+            color: #333;
         }
-
-        .button {
-            background-color: #2e7d32;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            margin: 0 10px;
-            cursor: pointer;
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .button:hover {
-            background-color: #1b5e20;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
-
-        .pet-face {
-            position: absolute;
-            top: -40px;
-            width: 60px;
-            height: 60px;
-            background-color: #ffeb3b;
-            border-radius: 50%;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        th, td {
+            text-align: left;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
         }
-
-        .eyes {
-            display: flex;
-            justify-content: space-between;
-            width: 30px;
-            margin-bottom: 5px; /* 将眼睛放到嘴巴上方 */
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
         }
-
-        .eye {
-            width: 10px;
-            height: 10px;
-            background-color: black;
-            border-radius: 50%;
+        td img {
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
         }
-
-        .mouth {
-            width: 40px;
-            height: 20px;
-            border-bottom: 4px solid black;
-            border-radius: 0 0 20px 20px;
-        }
-
-        .input-box {
-            width: 80%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .input-box:focus {
-            outline: none;
-        }
-
-        .send-button {
-            background-color: #2e7d32;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .send-button:hover {
-            background-color: #1b5e20;
+        tr:hover {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
-
-    <!-- 小电脑电子宠物 -->
-    <div class="pet-computer">
-        <div class="pet-face" id="petFace">
-            <div class="eyes">
-                <div class="eye"></div>
-                <div class="eye"></div>
-            </div>
-            <div class="mouth" id="petMouth"></div>
-        </div>
-
-        <div class="screen" id="chatScreen">
-            Hello! I'm your pet computer. Do you want to feed me, play with me, or chat with me?
-        </div>
-
-        <div class="keyboard">
-            <button class="button" id="feedButton">Feed</button>
-            <button class="button" id="playButton">Play</button>
-        </div>
-
-        <div class="keyboard">
-            <input type="text" id="userInput" class="input-box" placeholder="Type a message...">
-            <button class="send-button" id="sendButton">Send</button>
-        </div>
-    </div>
-
-    <script>
-        const chatScreen = document.getElementById('chatScreen');
-        const petMouth = document.getElementById('petMouth');
-        const feedButton = document.getElementById('feedButton');
-        const playButton = document.getElementById('playButton');
-        const sendButton = document.getElementById('sendButton');
-        const userInput = document.getElementById('userInput');
-
-        // 喂食按钮点击事件
-        feedButton.addEventListener('click', () => {
-            chatScreen.textContent = "Yum! Thank you for the food! 😋";
-            petMouth.className = 'mouth happy-mouth'; // 开心的嘴巴
-        });
-
-        // 玩耍按钮点击事件
-        playButton.addEventListener('click', () => {
-            chatScreen.textContent = "Yay! I love playing with you! 😄";
-            petMouth.className = 'mouth happy-mouth'; // 开心的嘴巴
-        });
-
-        // 发送按钮点击事件
-        sendButton.addEventListener('click', () => {
-            const userMessage = userInput.value;
-            if (userMessage === '01' || userMessage === '11'|| userMessage === '10'|| userMessage === '00') {
-                chatScreen.textContent = "I understand you, my friend! 🖥️";
-                petMouth.className = 'mouth happy-mouth'; // 开心的嘴巴
-            } else {
-                chatScreen.textContent = "Sorry, I don't understand human language... 😕";
-                petMouth.className = 'mouth sad-mouth'; // 伤心的嘴巴
-            }
-            userInput.value = ''; // 清空输入框
-        });
-
-        // 设置嘴巴变化样式
-        function setMouth(happy) {
-            if (happy) {
-                petMouth.className = 'mouth happy-mouth';
-            } else {
-                petMouth.className = 'mouth sad-mouth';
-            }
-        }
-    </script>
-
+    <header>
+        <h1>Languages & Skills 💻</h1>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>Domain</th>
+                <th>Technologies</th>
+            </tr>
+            <tr>
+                <td><strong>Languages</strong></td>
+                <td>
+                    <img src="https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white" alt="Java">
+                    <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
+                    <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+                    <img src="https://img.shields.io/badge/-SQL-4479A1?style=flat-square&logo=sql&logoColor=white" alt="SQL">
+                    <img src="https://img.shields.io/badge/-OCaml-EC6813?style=flat-square&logo=ocaml&logoColor=white" alt="OCaml">
+                    <img src="https://img.shields.io/badge/-Prolog-7427F5?style=flat-square&logo=prolog&logoColor=white" alt="Prolog">
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Frontend</strong></td>
+                <td>
+                    <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+                    <img src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Database</strong></td>
+                <td>
+                    <img src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL">
+                    <img src="https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL">
+                </td>
+            </tr>
+            <tr>
+                <td><strong>APIs</strong></td>
+                <td>
+                    <img src="https://img.shields.io/badge/-OpenAI_API-412991?style=flat-square&logo=openai&logoColor=white" alt="OpenAI API">
+                    <img src="https://img.shields.io/badge/-Gemini_API-4285F4?style=flat-square&logo=google-cloud&logoColor=white" alt="Gemini API">
+                    <img src="https://img.shields.io/badge/-Ollama_GPAPI-000000?style=flat-square&logo=github&logoColor=white" alt="Ollama GPAPI">
+                    <img src="https://img.shields.io/badge/-11Labs_TTS-FF6C37?style=flat-square&logo=twilio&logoColor=white" alt="11Labs TTS">
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Tools</strong></td>
+                <td>
+                    <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git">
+                    <img src="https://img.shields.io/badge/-Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+                    <img src="https://img.shields.io/badge/-Figma-F24E1E?style=flat-square&logo=figma&logoColor=white" alt="Figma">
+                </td>
+            </tr>
+            <tr>
+                <td><strong>IDE / Editors</strong></td>
+                <td>
+                    <img src="https://img.shields.io/badge/-IntelliJ_IDEA-000000?style=flat-square&logo=intellij-idea&logoColor=white" alt="IntelliJ IDEA">
+                    <img src="https://img.shields.io/badge/-VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" alt="VS Code">
+                    <img src="https://img.shields.io/badge/-Eclipse_IDE-2C2255?style=flat-square&logo=eclipse-ide&logoColor=white" alt="Eclipse IDE">
+                    <img src="https://img.shields.io/badge/-Cursor-007396?style=flat-square&logo=visual-studio-code&logoColor=white" alt="Cursor">
+                </td>
+            </tr>
+        </table>
+    </main>
 </body>
 </html>
+
